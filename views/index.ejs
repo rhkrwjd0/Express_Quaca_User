@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <script>
+
+  </script>
+</head>
+
+<body>
+  <h1>
+    <%= title %>
+  </h1>
+  <p>Server Url : <%= Url %><br />현재 Url : <%= hUrl %>
+  </p>
+
+  <br /> =========QU_001===========
+  <br /> =========사용자 회원가입===========<br />
+  <form name="frm1" method="POST">
+    <%= Url %>users/join
+      <input type="text" name="SsoKey" style="width:130px" placeholder="SsoKey">
+      <input type="text" name="Token" style="width:130px" placeholder="Token">
+      <input type="text" name="nickname" style="width:130px" placeholder="nickname">
+      <input type="text" name="LoginType" style="width:30px" placeholder="LoginType">
+      <input value="등록" onclick="javascript: frm1.action='/users/join';" type="submit" /> <br />
+  </form><br /><br />
+
+  <br /> =========QU_002===========
+  <br /> =========사용자토큰수정===========<br />
+  <form name="frm2" method="POST">
+    <%= Url %>users/update
+      <input type="text" name="SsoKey" style="width:130px" placeholder="SsoKey">
+      <input type="text" name="Token" style="width:130px" placeholder="Token">
+      <input value="수정" onclick="javascript: frm2.action='/users/update';" type="submit" /> <br />
+      2345234523452345, 1234
+  </form><br /><br />
+
+  <br /> =========QU_003===========
+  <br /> =========위치(주소)정보===========<br />
+  <form name="frm3" method="POST">
+    <%= Url %>geo/reversegeo
+      <input type="text" name="lat" style="width:130px" placeholder="lat">
+      <input type="text" name="lon" style="width:130px" placeholder="lon">
+      <input value="조회" onclick="javascript: frm3.action='/geo/reversegeo';" type="submit" /> <br />
+      35.023009, 126.720236
+  </form><br /><br />
+
+  <br /> =========QU_004===========
+  <br /> =========매장목록===========<br />
+  <form name="frm4" method="POST">
+    <%= Url %>store/storeselect
+      <input type="text" name="Addr" style="width:130px" placeholder="Addr"/>
+      <input value="매장전체조회" onclick="javascript: frm4.action='/store/storeselect';" type="submit" />
+  </form><br />
+
+  <br /><br /> =========QU_005===========
+  <br /> =========선택매장 정보===========<br />
+  <form name="frm5" method="POST">
+    <%= Url %>store/select
+      <input type="text" name="StoreId" style="width:130px" placeholder="StoreId">
+      <input value="조회" onclick="javascript: frm5.action='/store/select';" type="submit" /> <br />
+      1,2,3
+  </form><br />
+  <br /> =========QU_006===========
+  <br /> =========메뉴정보===========<br />
+  <form name="frm6" method="POST">
+    <%= Url %>menu/select
+      <input type="text" name="StoreId" style="width:130px" placeholder="StoreId">
+      <input value="조회" onclick="javascript: frm6.action='/menu/select';" type="submit" /> <br />
+      1,2,3
+  </form>
+  <br /> =========QU_007===========
+  <br /> =========결제내역===========<br />
+  <form name="frm7" method="POST">
+    <%= Url %>orders/UserPay
+      <input type="text" name="StoreId" style="width:130px" placeholder="StoreId">
+      <input type="text" name="SsoKey" style="width:130px" placeholder="SsoKey">
+      <input type="text" name="SearchType" style="width:130px" placeholder="SearchType">
+      <input type="text" name="StartDt" style="width:130px" placeholder="StartDt">
+      <input type="text" name="EndDt" style="width:130px" placeholder="EndDt">
+      <input value="조회" onclick="javascript: frm7.action='/orders/UserPay';" type="submit" /> <br />
+      SearchType(1month = 1 , 3month = 3, term = 0), StartDt, EndDt
+  </form> <br />
+  <br /> =========QU_008===========
+  <br /> =========결제상세내역===========<br />
+  <form name="frm8" method="POST">
+    <%= Url %>orders/UserPayDetail
+      <input type="text" name="UserPayId" style="width:130px" placeholder="UserPayId">
+      <input value="조회" onclick="javascript: frm8.action='/orders/UserPayDetail';" type="submit" /> <br />
+      210224-imp_186335799073, 210224-imp_644303190539
+  </form> <br />
+  <br /> =========QU_010===========
+  <br /> =========로그인===========<br />
+  <form name="frm0" method="POST">
+    <%= Url %>users/select
+      <input type="text" name="SsoKey" style="width:130px" placeholder="SsoKey">
+      <input value="조회" onclick="javascript: frm0.action='/users/select';" type="submit" /> <br />
+      2345234523452345
+  </form><br />
+  <br /> =========QU_011===========
+  <br /> =========결제완료===========<br />
+  <form name="frm11" method="POST">
+    <%= Url %>orders/payment
+      <input value="등록" onclick="javascript: frm11.action='/orders/payment';" type="submit" /> <br />
+  </form><br />
+  <br /> =========QU_011_1===========
+  <br /> =====import결제정보 조회=====<br />
+  <form name="frm14" method="POST">
+    <%= Url %>orders/selectpayment
+      <input type="text" name="UserPayId" style="width:130px" placeholder="UserPayId">
+      <input value="조회" onclick="javascript: frm14.action='/orders/selectpayment';" type="submit" /> <br />
+  </form>
+  210319-imp_838089593338
+  <br />
+
+
+  <br /> =========QU_012===========
+  <br /> =========공지===========<br />
+  <form name="frm12" method="POST">
+    <%= Url %>notice/notice
+      <input type="text" name="StoreId" style="width:60px" placeholder="StoreId">
+      <input value="조회" onclick="javascript: frm12.action='/notice/notice';" type="submit" /> <br />
+  </form><br />
+
+  <br /> =========QU_0130===========
+  <br /> =========리워드&쿠폰 조회===========<br />
+  <form name="frm130" method="POST">
+    <%= Url %>reward/rewardCouponCount
+      <input type="text" name="SsoKey" style="width:130px" placeholder="SsoKey">
+      <input type="text" name="StoreId" style="width:130px" placeholder="StoreId">
+      <input value="조회" onclick="javascript: frm130.action='/reward/rewardCouponCount';" type="submit" /> <br />
+      1666912057
+  </form><br />
+
+  <br /> =========QU_013===========
+  <br /> =========리워드조회===========<br />
+  <form name="frm13" method="POST">
+    <%= Url %>reward/reward
+      <input type="text" name="SsoKey" style="width:130px" placeholder="SsoKey">
+      <input type="text" name="StoreId" style="width:130px" placeholder="StoreId">
+      <input value="조회" onclick="javascript: frm13.action='/reward/reward';" type="submit" /> <br />
+      1666912057
+  </form><br />
+
+  <br /> =========QU_013_1===========
+  <br /> =========리워드 히스토리 조회===========<br />
+  <form name="frm17" method="POST">
+    <%= Url %>reward/rewardHistory
+      <input type="text" name="SsoKey" style="width:130px" placeholder="SsoKey">
+      <input type="text" name="StoreId" style="width:130px" placeholder="StoreId">
+      <input type="text" name="SearchType" style="width:130px" placeholder="SearchType">
+      <input value="조회" onclick="javascript: frm17.action='/reward/rewardHistory';" type="submit" /> <br />
+      105468185803851325812, 1, (week, 1month, 3month)
+  </form><br />
+  
+  <br /> =========QU_014===========
+  <br /> =========프리퀀시 조회===========<br />
+  <form name="frm15" method="POST">
+    <%= Url %>reward/frequency
+      <input type="text" name="SsoKey" style="width:130px" placeholder="SsoKey">
+      <input type="text" name="StoreId" style="width:130px" placeholder="StoreId">
+      <input value="조회" onclick="javascript: frm15.action='/reward/frequency';" type="submit" /> <br />
+      1666912057
+  </form><br />
+  <br /> =========QU_015===========
+  <br /> =========쿠폰  History===========<br />
+  <form name="frm18" method="POST">
+    <%= Url %>reward/Coupon
+      <input type="text" name="SsoKey" style="width:130px" placeholder="SsoKey">
+      <input type="text" name="StoreId" style="width:130px" placeholder="StoreId">
+      <input value="조회" onclick="javascript: frm18.action='/reward/Coupon';" type="submit" /> <br />
+      1666912057
+  </form><br />
+  <br /> =========QU_015_1===========
+  <br /> =========쿠폰 Avialable ===========<br />
+  <form name="frm16" method="POST">
+    <%= Url %>reward/Avialable
+      <input type="text" name="SsoKey" style="width:130px" placeholder="SsoKey">
+      <input type="text" name="StoreId" style="width:130px" placeholder="StoreId">
+      <input value="조회" onclick="javascript: frm16.action='/reward/Avialable';" type="submit" /> <br />
+      1666912057
+  </form><br /><br /><br />
+  <br /> =========QU_016===========
+  <br /> =========퀵 오더 조회 ===========<br />
+  <form name="frm20" method="POST">
+    <%= Url %>orders/quickInfo
+      <input type="text" name="SsoKey" style="width:130px" placeholder="SsoKey">
+      <input type="text" name="StoreId" style="width:130px" placeholder="StoreId">
+      <input value="조회" onclick="javascript: frm20.action='/orders/quickInfo';" type="submit" /> <br />
+      101800975713864238074 , 1
+  </form><br /><br /><br />
+  <br /> =========QU_017===========
+  <br /> =========자주하는 질문 조회 ===========<br />
+  <form name="frm21" method="POST">
+    <%= Url %>notice/FAQ
+      <input type="text" name="StoreId" style="width:130px" placeholder="StoreId">
+      <input value="조회" onclick="javascript: frm21.action='/notice/FAQ';" type="submit" /> <br />
+      1
+  </form><br /><br /><br />
+  <br /> =========QU_018===========
+  <br /> =========1:1 문의 목록===========<br />
+  <form name="frm22" method="POST">
+    <%= Url %>notice/AskList
+      <input type="text" name="StoreId" style="width:130px" placeholder="StoreId">
+      <input type="text" name="SsoKey" style="width:130px" placeholder="SsoKey">
+      <input value="조회" onclick="javascript: frm22.action='/notice/AskList';" type="submit" /> <br />
+      1
+  </form><br /><br /><br />
+  <br /> =========QU_018===========
+  <br /> =========1:1 문의 등록===========<br />
+  <form name="frm221" method="POST">
+    <%= Url %>notice/AskInsert
+      <input type="text" name="StoreId" style="width:130px" placeholder="StoreId">
+      <input type="text" name="SsoKey" style="width:130px" placeholder="SsoKey">
+      <input type="text" name="InsertNm" style="width:130px" placeholder="InsertNm">
+      <input type="text" name="Title" style="width:130px" placeholder="Title">
+      <input type="text" name="Contents" style="width:130px" placeholder="Contents">
+      <input value="조회" onclick="javascript: frm221.action='/notice/AskInsert';" type="submit" /> <br />
+      1
+  </form><br /><br /><br />
+
+  <br /> =========QU_020===========
+  <br /> =========공지사항 조회 ===========<br />
+  <form name="frm24" method="POST">
+    <%= Url %>notice/NoticeList
+      <input type="text" name="StoreId" style="width:130px" placeholder="StoreId">
+      <input value="조회" onclick="javascript: frm24.action='/notice/NoticeList';" type="submit" /> <br />
+      1
+  </form><br /><br /><br />
+  <br /> =========QU_020===========
+  <br /> =========공지사항 조회 ===========<br />
+  <form name="frm25" method="POST">
+    <%= Url %>notice/NoticeInfo
+      <input type="text" name="StoreId" style="width:130px" placeholder="StoreId">
+      <input type="text" name="Sid" style="width:130px" placeholder="Sid">
+      <input value="조회" onclick="javascript: frm25.action='/notice/NoticeInfo';" type="submit" /> <br />
+      1, 27
+  </form><br /><br /><br />
+  <br /> =========QU_019===========
+  <br /> =========결제 취소 요청 ===========<br />
+  <form name="frm23" method="POST">
+    <%= Url %>orders/CanclePay
+      <input type="text" name="UserPayId" style="width:130px" placeholder="UserPayId">
+      <input value="등록" onclick="javascript: frm23.action='/orders/CanclePay';" type="submit" /> <br />
+      210621-imp_800850107578
+  </form><br /><br /><br />
+</body>
+</html>
+
+<!-- * 프리퀀시 test
+<form name="frm24" method="POST">
+  <%= Url %>orders/testtest
+    <input type="text" name="StoreId" style="width:60px" placeholder="StoreId">
+    <input type="text" name="MenuId" style="width:60px" placeholder="MenuId">
+    <input type="text" name="SsoKey" style="width:60px" placeholder="SsoKey">
+    <input value="조회" onclick="javascript: frm24.action='/orders/testtesttest';" type="submit" /> <br />
+</form>
+1 S001,  1666912057 <br /> -->
+
+<!-- * 유닉스타임 변환 test
+  <form name="frm23" method="POST">
+    <%= Url %>orders/testtest
+      <input type="text" name="test" style="width:60px" placeholder="test">
+      <input value="조회" onclick="javascript: frm23.action='/orders/testtest';" type="submit" /> <br />
+  </form>
+  1616047109 -->
+

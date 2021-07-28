@@ -90,7 +90,7 @@ router.post('/AskInsert', function (req, res) {
   })
   .catch((error)=>{
       res.json({  success:false ,msg: "error" });
-      console.log("res resAskInsert Select catch - resAskInsert Select 실패 :", error, " - ", Date());
+      console.log("res resAskInsert catch - [실패] :", error, " - ", Date());
   })
 });
 

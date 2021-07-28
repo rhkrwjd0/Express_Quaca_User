@@ -54,7 +54,36 @@
   <form name="frm4" method="POST">
     <%= Url %>store/storeselect
       <input type="text" name="Addr" style="width:130px" placeholder="Addr"/>
+      <input type="text" name="SsoKey" style="width:130px" placeholder="SsoKey"/>
       <input value="매장전체조회" onclick="javascript: frm4.action='/store/storeselect';" type="submit" />
+  </form><br />
+
+  <br /> =========QU_004-1===========
+  <br /> =========매장 즐겨찾기 목록===========<br />
+  <form name="frm41" method="POST">
+    <%= Url %>store/FavoritesStoreList
+      <input type="text" name="SsoKey" style="width:130px" placeholder="SsoKey"/>
+      <input value="등록" onclick="javascript: frm41.action='/store/FavoritesStoreList';" type="submit" />
+  </form><br />
+
+  <br /> =========QU_004-2===========
+  <br /> =========매장 즐겨찾기 (최초 등록)===========<br />
+  <form name="frm42" method="POST">
+    <%= Url %>store/FavoritesStoreInsert
+      <input type="text" name="StoreId" style="width:130px" placeholder="StoreId"/>
+      <input type="text" name="SsoKey" style="width:130px" placeholder="SsoKey"/>
+      <input value="등록" onclick="javascript: frm42.action='/store/FavoritesStoreInsert';" type="submit" />
+  </form><br />
+
+  <br /> =========QU_004-3===========
+  <br /> =========매장 즐겨찾기 수정(찾기 등록 & 해제)===========<br />
+  <form name="frm43" method="POST">
+    <%= Url %>store/FavoritesStoreUpdate
+      <input type="text" name="StoreId" style="width:130px" placeholder="StoreId"/>
+      <input type="text" name="SsoKey" style="width:130px" placeholder="SsoKey"/>
+      <input type="text" name="FavoritesStoreId" style="width:130px" placeholder="FavoritesStoreId"/>
+      <input type="text" name="UseYn" style="width:130px" placeholder="UseYn"/>
+      <input value="수정" onclick="javascript: frm43.action='/store/FavoritesStoreUpdate';" type="submit" />
   </form><br />
 
   <br /><br /> =========QU_005===========
@@ -166,6 +195,18 @@
       <input value="조회" onclick="javascript: frm15.action='/reward/frequency';" type="submit" /> <br />
       1666912057
   </form><br />
+  
+  <br /> =========QU_0152===========
+  <br /> =========쿠폰  CouponSearchList===========<br />
+  <form name="frm181" method="POST">
+    <%= Url %>reward/CouponSearchList
+      <input type="text" name="SsoKey" style="width:130px" placeholder="SsoKey">
+      <input type="text" name="StoreId" style="width:130px" placeholder="StoreId">
+      <input type="text" name="SearchType" style="width:130px" placeholder="SearchType">
+      <input value="조회" onclick="javascript: frm181.action='/reward/CouponSearchList';" type="submit" /> <br />
+      105468185803851325812, 1, (1month, 3month, 6month)
+  </form><br />
+
   <br /> =========QU_015===========
   <br /> =========쿠폰  History===========<br />
   <form name="frm18" method="POST">

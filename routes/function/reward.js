@@ -111,6 +111,46 @@ var frequencyselect = (SsoKey,StoreId) =>{
     });
   }
 
+//쿠폰 기간 조회(210727)
+var CouponSearchList = (SsoKey, StoreId, SearchType) =>{
+  return new Promise((resolve, reject) => {
+    let couponSearchData = [SsoKey, StoreId, SearchType, SearchType];
+    let selectSql = 'SELECT '
+                      +'SsoKey,StoreId,Title,Contents, DATE_FORMAT(InsertDt, "%Y.%m.%d") AS InsertDt, '
+                      +'DATE_FORMAT(EndDate, "%Y.%m.%d") AS EndDate ,  DATE_FORMAT(UseDate, "%Y.%m.%d") AS UseDate, Used, '
+                      +'(CASE '
+                        +'WHEN Used = "Y" THEN "사용완료" '
+                        +'WHEN Used = "N" AND DATE_FORMAT(NOW(), "%Y-%m-%d") < DATE_FORMAT(EndDate, "%Y-%m-%d") THEN "사용가능" '
+                        +'WHEN Used = "N" AND DATE_FORMAT(NOW(), "%Y-%m-%d") > DATE_FORMAT(EndDate, "%Y-%m-%d") THEN "기간만료" '
+                        +'END) AS State '
+                      +'FROM Coupon '
+                      +'WHERE SsoKey = ? '
+                      +'AND StoreId = ? '
+                      +'AND DATE_FORMAT(InsertDt,"%Y-%m-%d") '
+                      +'BETWEEN (CASE '
+                        +'WHEN ? = "6month" THEN DATE_FORMAT(DATE_ADD(NOW(),INTERVAL -6 MONTH),"%Y-%m-%d") '
+                        +'WHEN ? = "3month" THEN DATE_FORMAT(DATE_ADD(NOW(),INTERVAL -3 MONTH),"%Y-%m-%d") '
+                        +'ELSE DATE_FORMAT(DATE_ADD(NOW(),INTERVAL -1 MONTH),"%Y-%m-%d") '
+                      +'END) '
+                      +'AND DATE_FORMAT(NOW(),"%Y-%m-%d") '
+                      +'ORDER BY InsertDt DESC ;'	;
+    let sql = require('mysql').format(selectSql , couponSearchData);
+    console.log(sql)   
+    console.log('couponSearchData select 데이터 >',couponSearchData);
+    
+    conn.connection.query(sql, function (error, rows) {
+        console.log('couponSearchData select rows.length > ',rows.length, rows[0]);
+        if(error){
+            console.log("couponSearchData select error - ", Date());
+            console.log("errno > " + error);
+            reject({ success: false, msg: error,rows:rows.length });
+        }else{
+          resolve({ success: true,code: 0, SsoKey: SsoKey, StoreId: StoreId, Info : rows });
+        }
+    });
+  });
+}
+
 //015 쿠폰 전체 조회(210715)
 var Couponselect = (SsoKey,StoreId) =>{
   return new Promise((resolve, reject) => {
@@ -126,7 +166,7 @@ var Couponselect = (SsoKey,StoreId) =>{
                       +'FROM Coupon '
                       +'WHERE SsoKey = ? '
                       +'AND StoreId = ? ;';
-    let sql = require('mysql').format(selectSql , couponData);   
+    let sql = require('mysql').format(selectSql , couponData);
     console.log('coupon select 데이터 >',couponData);
     
     conn.connection.query(sql, function (error, rows) {
@@ -398,6 +438,7 @@ exports.rewardHistoryselect = rewardHistoryselect
 exports.frequencyselect = frequencyselect
 exports.Avialableselect = Avialableselect
 exports.Couponselect = Couponselect
+exports.CouponSearchList = CouponSearchList
 exports.rewardInsertInfo = rewardInsertInfo
 exports.rewardInsertNew = rewardInsertNew
 exports.rewardInsertOver = rewardInsertOver

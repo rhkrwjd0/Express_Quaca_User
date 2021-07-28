@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var {rewardCouponCount, rewardselect,rewardHistoryselect,frequencyselect,Avialableselect,Couponselect } = require('../function/reward')
+var {rewardCouponCount, rewardselect, rewardHistoryselect, frequencyselect, Avialableselect, Couponselect, CouponSearchList } = require('../function/reward')
 
 //0130 리워드&쿠폰 조회
 router.post('/rewardCouponCount', function (req, res) {
@@ -96,6 +96,29 @@ router.post('/frequency', function (req, res) {
       console.log("res frequency Select catch - frequency Select 실패 :", error, " - ", Date());
   })
 });
+
+//015 쿠폰 기간 검색
+router.post('/CouponSearchList', function (req, res) {
+  let SsoKey = req.body.SsoKey;
+  let StoreId = req.body.StoreId;
+  let SearchType = req.body.SearchType;
+  console.log('CouponSearchList Data > ', SsoKey, StoreId, SearchType);
+  CouponSearchList(SsoKey, StoreId, SearchType)
+  .then((resCouponSearchList) => {
+    if (resCouponSearchList.code == 0) {
+        res.json({ success: true, SsoKey : resCouponSearchList.SsoKey, StoreId : resCouponSearchList.StoreId, Info : resCouponSearchList.Info });
+        console.log("[then]res Coupon SearchList 성공 -", Date());
+      } else {
+        res.json({ success: false, msg: resCouponSearchList.msg });
+        console.log("[then]res Coupon SearchList 실패 -", Date());
+      }
+})
+  .catch((error)=>{
+      res.json({  success:false , msg: error.msg });
+      console.log("[catch]res Coupon SearchList :", error, " - ", Date());
+  })
+});
+
 
 //015 쿠폰 History
 router.post('/Coupon', function (req, res) {
